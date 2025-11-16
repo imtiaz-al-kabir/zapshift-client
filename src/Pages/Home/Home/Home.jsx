@@ -1,15 +1,19 @@
 import Banner from "../Banner/Banner";
 import HowItWorks from "../HowItWorks/HowItWorks";
 import OurServices from "../OurServices/OurServices";
-import Brands from "./Brands/Brands";
+import Features from "../Features/Features";
+import Brands from "../Brands/Brands";
+
+
 
 const Home = () => {
   return (
     <div className="container mx-auto">
       <Banner />
-      <HowItWorks/>
-      <OurServices/>
-      <Brands/>
+      <HowItWorks />
+      <OurServices />
+      <Brands />
+      <Features />
     </div>
   );
 };

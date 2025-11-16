@@ -1,13 +1,13 @@
 import "swiper/css";
-import amazon from "../../../../assets/brands/amazon.png";
-import amazonV from "../../../../assets/brands/amazon_vector.png";
+import amazon from "../../../assets/brands/amazon.png";
+import amazonV from "../../../assets/brands/amazon_vector.png";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import casio from "../../../../assets/brands/casio.png";
-import monster from "../../../../assets/brands/moonstar.png";
-import randstad from "../../../../assets/brands/randstad.png";
-import star from "../../../../assets/brands/star.png";
-import starPeople from "../../../../assets/brands/start_people.png";
+import casio from "../../../assets/brands/casio.png";
+import monster from "../../../assets/brands/moonstar.png";
+import randstad from "../../../assets/brands/randstad.png";
+import star from "../../../assets/brands/star.png";
+import starPeople from "../../../assets/brands/start_people.png";
 import { Autoplay } from "swiper/modules";
 
 const Brands = () => {
@@ -21,8 +21,8 @@ const Brands = () => {
     amazonV,
   ];
   return (
-    <div className="pb-10">
-      <h1 className="text-secondary text-2xl font-bold text-center py-8">
+    <div className="pb-10 max-w-6xl mx-auto">
+      <h1 className="text-secondary text-2xl font-bold text-center pb-20 pt-10">
         We've helped thousands of sales teams
       </h1>
       <Swiper
