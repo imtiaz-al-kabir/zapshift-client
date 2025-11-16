@@ -3,6 +3,7 @@ import HowItWorks from "../HowItWorks/HowItWorks";
 import OurServices from "../OurServices/OurServices";
 import Features from "../Features/Features";
 import Brands from "../Brands/Brands";
+import Merchant from "../Merchant/Merchant";
 
 
 
@@ -14,6 +15,7 @@ const Home = () => {
       <OurServices />
       <Brands />
       <Features />
+      <Merchant/>
     </div>
   );
 };
