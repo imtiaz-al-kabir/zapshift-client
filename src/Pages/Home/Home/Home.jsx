@@ -1,11 +1,10 @@
 import Banner from "../Banner/Banner";
-import HowItWorks from "../HowItWorks/HowItWorks";
-import OurServices from "../OurServices/OurServices";
-import Features from "../Features/Features";
 import Brands from "../Brands/Brands";
+import Features from "../Features/Features";
+import HowItWorks from "../HowItWorks/HowItWorks";
 import Merchant from "../Merchant/Merchant";
-
-
+import OurServices from "../OurServices/OurServices";
+import Review from "../Review/Review";
 
 const Home = () => {
   return (
@@ -15,7 +14,8 @@ const Home = () => {
       <OurServices />
       <Brands />
       <Features />
-      <Merchant/>
+      <Merchant />
+      <Review />
     </div>
   );
 };
