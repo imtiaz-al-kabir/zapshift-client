@@ -1,17 +1,20 @@
 import { useForm, useWatch } from "react-hook-form";
 import { useLoaderData } from "react-router";
 import Swal from "sweetalert2";
+import useAuth from "../../Hook/useAuth";
+import useAxiosSecure from "../../Hook/useAxiosSecure";
 
 const SendParcel = () => {
   const {
     register,
     handleSubmit,
-    watch,
+
     control,
     formState: { errors },
   } = useForm();
-
+  const axiosSecure = useAxiosSecure();
   const serviceCenters = useLoaderData();
+  const { user } = useAuth();
   const duplicateRegions = serviceCenters.map((c) => c.region);
   const regions = [...new Set(duplicateRegions)];
 
@@ -55,10 +58,9 @@ const SendParcel = () => {
       confirmButtonText: "I Agree!",
     }).then((result) => {
       if (result.isConfirmed) {
-
-
-
-        
+        axiosSecure.post("/parcels", data).then((res) => {
+          console.log(res.data);
+        });
         // Swal.fire({
         //   title: "Deleted!",
         //   text: "Your file has been deleted.",
@@ -163,10 +165,11 @@ const SendParcel = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <div>
-                <label className="text-sm font-medium">Address</label>
+                <label className="text-sm font-medium">Email Address</label>
                 <input
-                  type="text"
-                  {...register("senderAddress")}
+                  type="email"
+                  {...register("senderEmailAddress")}
+                  defaultValue={user?.email}
                   className="w-full mt-1 p-3 border rounded-md"
                   placeholder="Address"
                 />
@@ -202,11 +205,11 @@ const SendParcel = () => {
             </div>
 
             <div>
-              <label className="text-sm font-medium">Pickup Instruction</label>
+              <label className="text-sm font-medium">Sender Address</label>
               <textarea
-                {...register("senderPickupInst")}
+                {...register("senderAddress")}
                 className="w-full mt-1 p-3 border rounded-md h-24"
-                placeholder="Pickup Instruction"
+                placeholder="sender Address"
               ></textarea>
             </div>
           </div>
@@ -244,12 +247,14 @@ const SendParcel = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <div>
-                <label className="text-sm font-medium">Receiver Address</label>
+                <label className="text-sm font-medium">
+                  Receiver Email Address
+                </label>
                 <input
-                  type="text"
-                  {...register("receiverAddress")}
+                  type="email"
+                  {...register("receiverEmailAddress")}
                   className="w-full mt-1 p-3 border rounded-md"
-                  placeholder="Address"
+                  placeholder="Email Address"
                 />
               </div>
               <div>
@@ -285,13 +290,11 @@ const SendParcel = () => {
             </div>
 
             <div>
-              <label className="text-sm font-medium">
-                Delivery Instruction
-              </label>
+              <label className="text-sm font-medium">Receiver Address</label>
               <textarea
-                {...register("receiverDeliveryInst")}
+                {...register("receiverAddress")}
                 className="w-full mt-1 p-3 border rounded-md h-24"
-                placeholder="Delivery Instruction"
+                placeholder="Receiver Address"
               ></textarea>
             </div>
           </div>
