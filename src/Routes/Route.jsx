@@ -4,9 +4,11 @@ import RootLayout from "../Layouts/RootLayout";
 import AboutUs from "../Pages/AboutUs/AboutUs";
 import Login from "../Pages/Auth/Login/Login";
 import Register from "../Pages/Auth/Register/Register";
+import BeARider from "../Pages/BeARider/BeARider";
 import Coverage from "../Pages/Coverage/Coverage";
 import Home from "../Pages/Home/Home/Home";
 import Pricing from "../Pages/Pricing/Pricing";
+import SendParcel from "../Pages/SendParcel/SendParcel";
 import Services from "../Pages/Services/Services";
 
 export const router = createBrowserRouter([
@@ -17,6 +19,15 @@ export const router = createBrowserRouter([
       { index: true, Component: Home },
       { path: "/services", Component: Services },
       { path: "/about-us", Component: AboutUs },
+      {
+        path: "/send-parcel",
+        Component: SendParcel,
+
+        loader: () =>
+          fetch("./data/serviceCenters.json").then((res) => res.json()),
+      },
+      { path: "/be-a-rider", Component: BeARider },
+
       { path: "/pricing", Component: Pricing },
       {
         path: "/coverage",

@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router";
 import useAuth from "../../../Hook/useAuth";
@@ -5,12 +6,29 @@ import useAuth from "../../../Hook/useAuth";
 const Register = () => {
   const { register, handleSubmit } = useForm();
 
-  const { createUser, loginWithGoogle } = useAuth();
+  const { createUser, loginWithGoogle, updateUserProfile } = useAuth();
   const handleRegister = (data) => {
     console.log(data);
+    const profileImg = data.photo[0];
 
     createUser(data.email, data.password)
-      .then((result) => console.log(result))
+      .then((result) => {
+        const formData = new FormData();
+        formData.append("image", profileImg);
+
+        const image_API_Url = `"https://api.imgbb.com/1/upload?key=${
+          import.meta.env.VITE_image_host
+        }"`;
+        axios.post(image_API_Url, formData).then((res) => {
+          const userProfile = {
+            displayName: data.name,
+            photoURL: res.data.data.trl,
+          };
+          updateUserProfile(userProfile)
+            .then()
+            .catch((err) => console.log(err));
+        });
+      })
       .catch((err) => console.log(err));
   };
 

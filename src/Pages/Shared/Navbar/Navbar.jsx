@@ -11,6 +11,8 @@ const Navbar = () => {
     { name: "Services", path: "/services" },
     { name: "About Us", path: "/about-us" },
     { name: "Pricing", path: "/pricing" },
+    {name:"Send Parcel",path:"send-parcel"},
+    {name:"Be A Rider",path:"/be-a-rider"},
     { name: "Coverage", path: "/coverage" },
     ...(user
       ? [
