@@ -1,22 +1,30 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../../Hook/useAuth";
 
 const Login = () => {
   const { register, handleSubmit } = useForm();
+
+  const location=useLocation()
+  const navigate=useNavigate()
 
   const { loginUser, loginWithGoogle } = useAuth();
   const handleLogin = (data) => {
     console.log(data);
 
     loginUser(data.email, data.password)
-      .then((result) => console.log(result))
+      .then((result) => 
+        
+        navigate(location.state || "/")
+        
+        
+       )
       .catch((err) => console.log(err));
   };
 
   const handleGoogle = () => {
     loginWithGoogle()
-      .then((result) => console.log(result))
+      .then((result) => navigate(location.state || "/"))
       .catch((err) => console.log(err));
   };
 

@@ -168,7 +168,7 @@ const SendParcel = () => {
                 <label className="text-sm font-medium">Email Address</label>
                 <input
                   type="email"
-                  {...register("senderEmailAddress")}
+                  {...register("senderEmail")}
                   defaultValue={user?.email}
                   className="w-full mt-1 p-3 border rounded-md"
                   placeholder="Address"
@@ -252,7 +252,7 @@ const SendParcel = () => {
                 </label>
                 <input
                   type="email"
-                  {...register("receiverEmailAddress")}
+                  {...register("receiverEmail")}
                   className="w-full mt-1 p-3 border rounded-md"
                   placeholder="Email Address"
                 />

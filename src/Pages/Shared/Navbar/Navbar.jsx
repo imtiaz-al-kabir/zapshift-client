@@ -1,26 +1,23 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router";
 import Logo from "../../../Components/Logo";
+import useAuth from "../../../Hook/useAuth";
 
 const Navbar = () => {
-  const [user, setUser] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const { user } = useAuth();
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "Services", path: "/services" },
     { name: "About Us", path: "/about-us" },
     { name: "Pricing", path: "/pricing" },
-    {name:"Send Parcel",path:"send-parcel"},
-    {name:"Be A Rider",path:"/be-a-rider"},
+    { name: "Send Parcel", path: "send-parcel" },
+    { name: "Be A Rider", path: "/be-a-rider" },
     { name: "Coverage", path: "/coverage" },
     ...(user
       ? [
-          { name: "Add New Challenge", path: "/challenges/add" },
-
-          { name: "User Challenges", path: "/user-challenge" },
-
-          { name: "My Activities", path: "/my-activities" },
+          
+          { name: "My Parcels", path: "/dashboard/my-parcels" },
         ]
       : []),
   ];

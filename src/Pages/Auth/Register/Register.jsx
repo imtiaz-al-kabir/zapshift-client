@@ -22,7 +22,7 @@ const Register = () => {
         axios.post(image_API_Url, formData).then((res) => {
           const userProfile = {
             displayName: data.name,
-            photoURL: res.data.data.trl,
+            photoURL: res.data.data.url,
           };
           updateUserProfile(userProfile)
             .then()
