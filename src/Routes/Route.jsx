@@ -9,14 +9,14 @@ import BeARider from "../Pages/BeARider/BeARider";
 import Coverage from "../Pages/Coverage/Coverage";
 import MyParcels from "../Pages/Dashboard/My parcels/Myparcels";
 
-
+import Payment from "../Pages/Dashboard/Payment/Payment";
+import PaymentSuccess from "../Pages/Dashboard/Payment/PaymentSuccess";
+import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
 import Home from "../Pages/Home/Home/Home";
 import Pricing from "../Pages/Pricing/Pricing";
 import SendParcel from "../Pages/SendParcel/SendParcel";
 import Services from "../Pages/Services/Services";
 import PrivateRoute from "./PrivateRoute";
-import Payment from "../Pages/Dashboard/Payment/Payment";
-import PaymentSuccess from "../Pages/Dashboard/Payment/PaymentSuccess";
 
 export const router = createBrowserRouter([
   {
@@ -72,6 +72,10 @@ export const router = createBrowserRouter([
       {
         path: "payment-success",
         Component: PaymentSuccess,
+      },
+      {
+        path: "payment-history",
+        Component: PaymentHistory,
       },
     ],
   },
