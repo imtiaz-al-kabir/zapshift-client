@@ -2,15 +2,15 @@ import { CiDeliveryTruck } from "react-icons/ci";
 import { Link, NavLink, Outlet } from "react-router";
 const DashboardLayout = () => {
   return (
-    <div className="drawer lg:drawer-open">
+    <div className="drawer lg:drawer-open bg-gray-100">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
         {/* Navbar */}
-        <nav className="navbar w-full bg-gray-200">
+        <nav className="navbar w-full bg-primary">
           <label
             htmlFor="my-drawer-4"
             aria-label="open sidebar"
-            className="btn btn-square btn-ghost"
+            className="btn btn-square btn-ghost "
           >
             {/* Sidebar toggle icon */}
             <svg
@@ -41,7 +41,7 @@ const DashboardLayout = () => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <div className="flex min-h-full flex-col items-start bg-white is-drawer-close:w-14 is-drawer-open:w-64">
+        <div className="flex min-h-full flex-col items-start bg-secondary text-white is-drawer-close:w-14 is-drawer-open:w-64">
           {/* Sidebar content here */}
           <ul className="menu w-full grow">
             {/* List item */}

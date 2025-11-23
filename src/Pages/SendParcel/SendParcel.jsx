@@ -47,7 +47,7 @@ const SendParcel = () => {
         cost = minCharge + extraCharge;
       }
     }
-
+    data.cost = cost;
     Swal.fire({
       title: "Agree with the Cost?",
       text: `you will Charged ${cost} taka`,
@@ -142,6 +142,7 @@ const SendParcel = () => {
                 <input
                   {...register("senderName")}
                   type="text"
+                  defaultValue={user?.displayName}
                   className="w-full mt-1 p-3 border rounded-md"
                   placeholder="Sender Name"
                 />
@@ -169,7 +170,7 @@ const SendParcel = () => {
                 <input
                   type="email"
                   {...register("senderEmail")}
-                  defaultValue={user?.email}
+                  defaultValue={user.email}
                   className="w-full mt-1 p-3 border rounded-md"
                   placeholder="Address"
                 />
