@@ -33,7 +33,16 @@ export const router = createBrowserRouter([
         loader: () =>
           fetch("./data/serviceCenters.json").then((res) => res.json()),
       },
-      { path: "/be-a-rider", Component: BeARider },
+      {
+        path: "/be-a-rider",
+        element: (
+          <PrivateRoute>
+            <BeARider />
+          </PrivateRoute>
+        ),
+        loader: () =>
+          fetch("./data/serviceCenters.json").then((res) => res.json()),
+      },
 
       { path: "/pricing", Component: Pricing },
       {
