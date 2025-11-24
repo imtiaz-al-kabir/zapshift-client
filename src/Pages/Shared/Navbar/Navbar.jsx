@@ -5,7 +5,11 @@ import useAuth from "../../../Hook/useAuth";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { user } = useAuth();
+  const { user, singOut } = useAuth();
+
+  const handleSignOut = () => {
+    singOut().then().catch();
+  };
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "Services", path: "/services" },
@@ -14,12 +18,7 @@ const Navbar = () => {
     { name: "Send Parcel", path: "send-parcel" },
     { name: "Be A Rider", path: "/be-a-rider" },
     { name: "Coverage", path: "/coverage" },
-    ...(user
-      ? [
-          
-          { name: "My Parcels", path: "/dashboard/my-parcels" },
-        ]
-      : []),
+    ...(user ? [{ name: "My Parcels", path: "/dashboard/my-parcels" }] : []),
   ];
 
   return (
@@ -73,7 +72,10 @@ const Navbar = () => {
                 </Link>
               </li>
               <li>
-                <button className="btn  text-white bg-linear-to-r from-rose-500 to-red-600 hover:from-rose-600 hover:to-red-700 transition-all duration-300 ">
+                <button
+                  onClick={handleSignOut}
+                  className="btn  text-white bg-linear-to-r from-rose-500 to-red-600 hover:from-rose-600 hover:to-red-700 transition-all duration-300 "
+                >
                   Logout
                 </button>
               </li>
@@ -172,7 +174,10 @@ const Navbar = () => {
                 </Link>
               </li>
               <li>
-                <button className="btn  text-white bg-linear-to-r from-rose-500 to-red-600 hover:from-rose-600 hover:to-red-700 transition-all duration-300 ">
+                <button
+                  onClick={handleSignOut}
+                  className="btn  text-white bg-linear-to-r from-rose-500 to-red-600 hover:from-rose-600 hover:to-red-700 transition-all duration-300 "
+                >
                   Logout
                 </button>
               </li>

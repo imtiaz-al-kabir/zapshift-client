@@ -1,14 +1,17 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../../Hook/useAuth";
+import useAxiosSecure from "../../../Hook/useAxiosSecure";
+import SocialPage from "../../Shared/SocialPage/SocialPage";
 
 const Register = () => {
   const { register, handleSubmit } = useForm();
-
+  const location = useLocation();
+  const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
   const { createUser, loginWithGoogle, updateUserProfile } = useAuth();
   const handleRegister = (data) => {
-    console.log(data);
     const profileImg = data.photo[0];
 
     createUser(data.email, data.password)
@@ -16,27 +19,36 @@ const Register = () => {
         const formData = new FormData();
         formData.append("image", profileImg);
 
-        const image_API_Url = `"https://api.imgbb.com/1/upload?key=${
+        const image_API_Url = `https://api.imgbb.com/1/upload?key=${
           import.meta.env.VITE_image_host
-        }"`;
+        }`;
         axios.post(image_API_Url, formData).then((res) => {
+          console.log("after image", res);
+          const photoURL = res.data.data.url;
+
+          const userInfo = {
+            email: data.email,
+            name: data.name,
+            photoURL: photoURL,
+          };
+          axiosSecure.post("/users", userInfo).then((res) => {
+            if (res.data.insertedId) {
+              console.log("user created in the database");
+            }
+          });
           const userProfile = {
             displayName: data.name,
-            photoURL: res.data.data.url,
+            photoURL: photoURL,
           };
           updateUserProfile(userProfile)
-            .then()
+            .then(() => navigate(location.state || "/") )
             .catch((err) => console.log(err));
         });
       })
       .catch((err) => console.log(err));
   };
 
-  const handleGoogle = () => {
-    loginWithGoogle()
-      .then((result) => console.log(result))
-      .catch((err) => console.log(err));
-  };
+
   return (
     <form
       onSubmit={handleSubmit(handleRegister)}
@@ -63,6 +75,7 @@ const Register = () => {
           <label className="label">photo</label>
           <input
             type="file"
+            {...register("photo")}
             className="file-input focus-within:outline-0 bg-white  w-full"
           />
           <label className="label">Password</label>
@@ -83,39 +96,7 @@ const Register = () => {
             Login
           </Link>
         </h1>
-        <button
-          onClick={handleGoogle}
-          className="btn bg-white text-black border-0 shadow"
-        >
-          <svg
-            aria-label="Google logo"
-            width="16"
-            height="16"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 512 512"
-          >
-            <g>
-              <path d="m0 0H512V512H0" fill="#fff"></path>
-              <path
-                fill="#34a853"
-                d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"
-              ></path>
-              <path
-                fill="#4285f4"
-                d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"
-              ></path>
-              <path
-                fill="#fbbc02"
-                d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"
-              ></path>
-              <path
-                fill="#ea4335"
-                d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"
-              ></path>
-            </g>
-          </svg>
-          Login with Google
-        </button>
+        <SocialPage name='SignUp'/>
       </div>
     </form>
   );

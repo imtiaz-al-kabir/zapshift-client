@@ -59,7 +59,7 @@ const MyParcels = () => {
 
       <div className="bg-white rounded-2xl">
         <div className="overflow-x-auto px-5">
-          <table className="table ">
+          <table className="table table-zebra ">
             {/* head */}
             <thead>
               <tr>
