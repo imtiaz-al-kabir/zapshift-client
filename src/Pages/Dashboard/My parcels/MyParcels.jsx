@@ -91,7 +91,7 @@ const MyParcels = () => {
                       </button>
                     )}
                   </td>
-                  <td>{}</td>
+                  <td>{parcel.deliveryStatus}</td>
                   <td>
                     <button className="btn  btn-square bg-white hover:bg-primary">
                       <FaEdit size={20} />{" "}

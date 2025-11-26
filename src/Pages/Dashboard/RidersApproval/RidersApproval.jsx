@@ -53,8 +53,9 @@ const RidersApproval = () => {
               <th></th>
               <th>Name</th>
               <th>Email</th>
-              <th>Status</th>
+              <th>Application Status</th>
               <th>Region</th>
+              <th>Work Status</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -78,6 +79,7 @@ const RidersApproval = () => {
                   </p>
                 </td>
                 <td>{rider.region}</td>
+                <td>{rider.workStatus}</td>
                 <td className="space-x-5">
                   <button
                     className="btn btn-square btn-sm bg-white"

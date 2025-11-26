@@ -14,13 +14,14 @@ import PaymentSuccess from "../Pages/Dashboard/Payment/PaymentSuccess";
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
 import RidersApproval from "../Pages/Dashboard/RidersApproval/RidersApproval";
 
+import AssignRiders from "../Pages/Dashboard/AssignRiders/AssignRiders";
+import UsersManagement from "../Pages/Dashboard/usersManagement/usersManagement";
 import Home from "../Pages/Home/Home/Home";
 import Pricing from "../Pages/Pricing/Pricing";
 import SendParcel from "../Pages/SendParcel/SendParcel";
 import Services from "../Pages/Services/Services";
 import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
-import UsersManagement from "../Pages/Dashboard/usersManagement/usersManagement";
 
 export const router = createBrowserRouter([
   {
@@ -100,10 +101,19 @@ export const router = createBrowserRouter([
       },
       {
         path: "users-management",
-        
+
         element: (
           <AdminRoute>
             <UsersManagement />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "assign-riders",
+
+        element: (
+          <AdminRoute>
+            <AssignRiders />
           </AdminRoute>
         ),
       },
