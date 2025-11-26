@@ -1,5 +1,6 @@
 import { useForm, useWatch } from "react-hook-form";
 import { useLoaderData } from "react-router";
+import Swal from "sweetalert2";
 import riderImg from "../../assets/agent-pending.png";
 import useAuth from "../../Hook/useAuth";
 import useAxiosSecure from "../../Hook/useAxiosSecure";
@@ -23,6 +24,18 @@ export default function BeARider() {
 
   const handleRider = (data) => {
     console.log(data);
+    axiosSecure.post("/riders", data).then((res) => {
+      if (res.data.insertedId) {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title:
+            "Your Application has been submitted.we will reach you out soon",
+          showConfirmButton: false,
+          timer: 2500,
+        });
+      }
+    });
   };
   return (
     <form
@@ -49,6 +62,7 @@ export default function BeARider() {
               <input
                 type="text"
                 {...register("name")}
+                defaultValue={user.displayName}
                 className="w-full mt-1 p-3 border rounded-md"
                 placeholder="Your Name"
               />
@@ -69,6 +83,7 @@ export default function BeARider() {
               <label className="text-sm font-semibold">Your Email</label>
               <input
                 type="email"
+                defaultValue={user.email}
                 {...register("email")}
                 className="w-full mt-1 p-3 border rounded-md"
                 placeholder="Your Email"
@@ -107,16 +122,18 @@ export default function BeARider() {
                 type="text"
                 {...register("license")}
                 className="w-full mt-1 p-3 border rounded-md"
-                placeholder="NID"
+                placeholder="Driving License"
               />
             </div>
             <div>
-              <label className="text-sm font-semibold">Bike Registration</label>
+              <label className="text-sm font-semibold">
+                Bike Registration No
+              </label>
               <input
                 type="text"
                 {...register("registration")}
                 className="w-full mt-1 p-3 border rounded-md"
-                placeholder="NID"
+                placeholder="Bike Registration"
               />
             </div>
             <div>

@@ -1,7 +1,11 @@
 import { CiDeliveryTruck } from "react-icons/ci";
-import { FaHistory } from "react-icons/fa";
+import { FaHistory, FaMotorcycle } from "react-icons/fa";
+import { MdManageAccounts } from "react-icons/md";
 import { Link, NavLink, Outlet } from "react-router";
+import useRole from "../Hook/useRole";
 const DashboardLayout = () => {
+  const { role } = useRole();
+  console.log(role);
   return (
     <div className="drawer lg:drawer-open bg-gray-100">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -90,6 +94,34 @@ const DashboardLayout = () => {
                 <span className="is-drawer-close:hidden">Payment History</span>
               </NavLink>
             </li>
+            {role === "admin" && (
+              <>
+                <li>
+                  <NavLink
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Riders Approval"
+                    to="/dashboard/riders-approval"
+                  >
+                    <FaMotorcycle />
+                    <span className="is-drawer-close:hidden">
+                      Riders Approval
+                    </span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Users Management"
+                    to="/dashboard/users-management"
+                  >
+                    <MdManageAccounts />
+                    <span className="is-drawer-close:hidden">
+                      Users Management
+                    </span>
+                  </NavLink>
+                </li>
+              </>
+            )}
 
             {/* List item */}
             <li>

@@ -12,11 +12,15 @@ import MyParcels from "../Pages/Dashboard/My parcels/Myparcels";
 import Payment from "../Pages/Dashboard/Payment/Payment";
 import PaymentSuccess from "../Pages/Dashboard/Payment/PaymentSuccess";
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
+import RidersApproval from "../Pages/Dashboard/RidersApproval/RidersApproval";
+
 import Home from "../Pages/Home/Home/Home";
 import Pricing from "../Pages/Pricing/Pricing";
 import SendParcel from "../Pages/SendParcel/SendParcel";
 import Services from "../Pages/Services/Services";
+import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
+import UsersManagement from "../Pages/Dashboard/usersManagement/usersManagement";
 
 export const router = createBrowserRouter([
   {
@@ -85,6 +89,23 @@ export const router = createBrowserRouter([
       {
         path: "payment-history",
         Component: PaymentHistory,
+      },
+      {
+        path: "riders-approval",
+        element: (
+          <AdminRoute>
+            <RidersApproval />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "users-management",
+        
+        element: (
+          <AdminRoute>
+            <UsersManagement />
+          </AdminRoute>
+        ),
       },
     ],
   },
